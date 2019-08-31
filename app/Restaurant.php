@@ -6,9 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Restaurant extends Model
 {
-    public function days()
+
+    protected $fillable=['name'];
+
+
+    public function horaire()
 	{
-		return $this->belongsToMany('App\Day', 'horaires')->withPivot('start_time', 'end_time');
+		return $this->hasMany('App\Horaire');
 	}
 
 }

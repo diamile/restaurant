@@ -16,18 +16,23 @@ class CreateHorairesTable extends Migration
         Schema::create('horaires', function (Blueprint $table) {
             $table->increments('id');
 			$table->timestamps();
-            $table->integer('restaurant_id')->unsigned();
-            $table->foreign('restaurant_id')->references('id')->on('restaurants')
-            ->onDelete('restrict')
-            ->onUpdate('restrict');
+            $table->unsignedBigInteger('restaurant_id')->index();
+            
+            $table->foreign('restaurant_id')->references('id')->on('restaurants');
+    
 
-            $table->integer('day_id')->unsigned();
-            $table->foreign('day_id')->references('id')->on('days')
-            ->onDelete('restrict')
-            ->onUpdate('restrict');
-
+            $table->unsignedBigInteger('day_id')->index();
+            $table->foreign('day_id')->references('id')->on('days');
+            
 			$table->time('start_time');
-			$table->time('end_time');
+            $table->time('end_time');
+
+            $table->string('restart_time');
+            $table->string('reend_time');
+
+            $table->string('state');
+            
+         
         });
     }
 
