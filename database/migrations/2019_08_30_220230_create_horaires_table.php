@@ -14,8 +14,20 @@ class CreateHorairesTable extends Migration
     public function up()
     {
         Schema::create('horaires', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+            $table->increments('id');
+			$table->timestamps();
+            $table->integer('restaurant_id')->unsigned();
+            $table->foreign('restaurant_id')->references('id')->on('restaurants')
+            ->onDelete('restrict')
+            ->onUpdate('restrict');
+
+            $table->integer('day_id')->unsigned();
+            $table->foreign('day_id')->references('id')->on('days')
+            ->onDelete('restrict')
+            ->onUpdate('restrict');
+
+			$table->time('start_time');
+			$table->time('end_time');
         });
     }
 
