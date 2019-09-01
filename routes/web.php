@@ -11,9 +11,8 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 
+//creation du route en utilisant mon controller et en appelant la fonction index 
+//ceci est le route qui gére ma page d'accueil
 Route::get('/','RestaurantController@index');
